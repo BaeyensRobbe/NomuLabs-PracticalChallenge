@@ -17,7 +17,7 @@ Follow these instructions to get a local copy of the project up and running on y
    
    Example :
    PORT=5000
-   MONGO_URI=mongodb+srv://<username>:<password>@todoappcluster.wnd3k8u.mongodb.net/?retryWrites=true&w=majority&appName=todoAppCluster
+   MONGO_URI=mongodb+srv://{username}:{password}@todoappcluster.wnd3k8u.mongodb.net/?retryWrites=true&w=majority&appName=todoAppCluster
 
 6. Run 'npm run dev' to start the backend
 7. Lastly, run 'npm start' to start up the frontend
