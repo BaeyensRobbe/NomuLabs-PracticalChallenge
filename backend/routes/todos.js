@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     }    
 })
 
+// add
 router.post('/', async (req, res) => {
     const {title, completed, dueDate, priority} = req.body;
     if (dueDate && new Date(dueDate) < new Date().setHours(0, 0, 0, 0)) {
@@ -31,6 +32,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+// update
 router.put('/:id', async (req, res) => {
     const {title, completed, dueDate, priority} = req.body;
     if (dueDate && new Date(dueDate) < new Date().setHours(0, 0, 0, 0)) {
@@ -44,6 +46,8 @@ router.put('/:id', async (req, res) => {
     }    
 })
 
+
+// delete
 router.delete('/:id', async (req, res) => {
     try {
         const deletedTodo = await Todo.findByIdAndDelete(req.params.id);
