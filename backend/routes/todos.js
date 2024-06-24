@@ -13,9 +13,15 @@ router.get('/', async (req, res) => {
 })
 
 router.post('/', async (req, res) => {
+    const {title, completed, dueDate, priority} = req.body;
+    if (dueDate && new Date(dueDate) < new Date().setHours(0, 0, 0, 0)) {
+        return res.status(400).json({ error: 'Due date cannot be in the past' });
+    }
     const newTodo = new Todo({
-        title: req.body.title,
-        completed: req.body.completed
+        title,
+        completed,
+        dueDate,
+        priority
     });
     try {
         const savedTodo = await newTodo.save();
@@ -26,8 +32,12 @@ router.post('/', async (req, res) => {
 })
 
 router.put('/:id', async (req, res) => {
+    const {title, completed, dueDate, priority} = req.body;
+    if (dueDate && new Date(dueDate) < new Date().setHours(0, 0, 0, 0)) {
+        return res.status(400).json({ error: 'Due date cannot be in the past' });
+    }
     try{
-        const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        const updatedTodo = await Todo.findByIdAndUpdate(req.params.id, {title, completed, dueDate, priority}, {new: true});
         res.json(updatedTodo);
     } catch(err){
         res.status(500).json({message: err.message});
